@@ -1,0 +1,475 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudySync | Student Productivity Tracker</title>
+
+    <meta name="description"
+        content="Plan your studies, track daily tasks, focus better and monitor your coding progress with StudySync.">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <a href="#home" class="logo">
+            <span class="logo-icon">S</span>
+            <span>Study<span class="logo-highlight">Sync</span></span>
+        </a>
+
+        <nav class="navbar">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#tasks" class="nav-link">Daily Tasks</a>
+            <a href="#timetable" class="nav-link">Timetable</a>
+            <a href="#coding" class="nav-link">Coding</a>
+            <a href="#focus" class="nav-link">Focus Room</a>
+        </nav>
+
+        <button id="themeToggle" class="theme-toggle"
+            type="button" aria-label="Toggle dark mode">
+            🌙
+        </button>
+    </header>
+
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="container">
+
+        <!-- ===== HERO SECTION ===== -->
+        <section class="hero" id="home">
+
+            <div class="hero-content">
+                <span class="eyebrow">YOUR PERSONAL STUDY SPACE</span>
+
+                <h1>Make every day<br>
+                    <span class="gradient-text">count.</span>
+                </h1>
+
+                <p>
+                    Organize your studies, build consistency and
+                    track your progress — one day at a time.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#tasks" class="btn btn-primary">
+                        Start Studying →
+                    </a>
+
+                    <a href="#coding" class="btn btn-secondary">
+                        Track Coding
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-card">
+                <div class="hero-card-top">
+                    <span>YOUR DAILY PROGRESS</span>
+                    <span class="status-dot">●</span>
+                </div>
+
+                <div class="hero-progress-number">
+                    <span id="heroProgress">0%</span>
+                    <span class="progress-label">completed</span>
+                </div>
+
+                <div class="progress-track">
+                    <div id="heroProgressBar" class="progress-fill"></div>
+                </div>
+
+                <p id="heroMessage">
+                    Every small step counts. Let's begin!
+                </p>
+
+                <div class="hero-mini-stats">
+                    <div>
+                        <strong id="heroCompleted">0</strong>
+                        <span>Completed</span>
+                    </div>
+
+                    <div>
+                        <strong id="heroRemaining">0</strong>
+                        <span>Remaining</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- ===== DATE AND GREETING ===== -->
+        <section class="welcome-row">
+            <div>
+                <h2 id="greeting">Welcome back! 👋</h2>
+                <p id="currentDate">Let's make today productive.</p>
+            </div>
+
+            <div class="today-badge">
+                <span>📅</span>
+                <span>MY STUDY DASHBOARD</span>
+            </div>
+        </section>
+
+
+        <!-- ===== OVERVIEW CARDS ===== -->
+        <section class="stats-grid">
+
+            <article class="stat-card">
+                <div class="stat-icon purple">✓</div>
+                <p>Total Tasks</p>
+                <h3 id="totalTasks">3</h3>
+                <span>Your daily goals</span>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon green">⚡</div>
+                <p>Tasks Completed</p>
+                <h3 id="completedTasks">0</h3>
+                <span>Keep going!</span>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon orange">💻</div>
+                <p>DSA Questions</p>
+                <h3 id="solvedCount">0</h3>
+                <span>Problems solved</span>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon blue">🎯</div>
+                <p>Daily Progress</p>
+                <h3 id="progressPercent">0%</h3>
+                <span>Based on your tasks</span>
+            </article>
+
+        </section>
+
+
+        <!-- ===== DAILY TASKS ===== -->
+        <section class="section-card" id="tasks">
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-kicker">STAY CONSISTENT</span>
+                    <h2>Daily Tasks ✓</h2>
+                    <p>Small actions. Big results.</p>
+                </div>
+
+                <span class="section-emoji">📝</span>
+            </div>
+
+            <form id="taskForm" class="task-form">
+                <input
+                    type="text"
+                    id="taskInput"
+                    placeholder="Add a new study task..."
+                    maxlength="100"
+                    autocomplete="off"
+                    aria-label="New task">
+
+                <button type="submit" class="btn btn-primary">
+                    + Add Task
+                </button>
+            </form>
+
+            <div class="task-progress-info">
+                <span>Today's completion</span>
+                <strong id="taskProgressText">0 of 3 tasks</strong>
+            </div>
+
+            <div class="progress-track task-progress-track">
+                <div id="taskProgressBar" class="progress-fill"></div>
+            </div>
+
+            <div id="taskList" class="task-list">
+
+                <label class="task-item">
+                    <input type="checkbox" id="python">
+                    <span class="custom-checkbox"></span>
+                    <span class="task-details">
+                        <strong>Practice Python</strong>
+                        <small>Programming · 30 min</small>
+                    </span>
+                    <span class="task-tag tag-purple">Learning</span>
+                </label>
+
+                <label class="task-item">
+                    <input type="checkbox" id="dsa">
+                    <span class="custom-checkbox"></span>
+                    <span class="task-details">
+                        <strong>Solve DSA problems</strong>
+                        <small>C++ · 45 min</small>
+                    </span>
+                    <span class="task-tag tag-green">Important</span>
+                </label>
+
+                <label class="task-item">
+                    <input type="checkbox" id="css">
+                    <span class="custom-checkbox"></span>
+                    <span class="task-details">
+                        <strong>Learn Web Development</strong>
+                        <small>HTML / CSS / JavaScript · 30 min</small>
+                    </span>
+                    <span class="task-tag tag-orange">Practice</span>
+                </label>
+
+            </div>
+
+            <p class="section-note">
+                💡 Tip: Focus on consistency, not perfection.
+            </p>
+
+        </section>
+
+
+        <!-- ===== TIMETABLE ===== -->
+        <section class="section-card" id="timetable">
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-kicker">PLAN YOUR WEEK</span>
+                    <h2>Study Timetable 📅</h2>
+                    <p>Give your learning a clear direction.</p>
+                </div>
+
+                <span class="section-emoji">⏰</span>
+            </div>
+
+            <div class="table-wrapper">
+                <table class="timetable">
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Morning</th>
+                            <th>Afternoon</th>
+                            <th>Evening</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Monday</td>
+                            <td><span class="subject subject-blue">DSA</span></td>
+                            <td><span class="subject subject-purple">Python</span></td>
+                            <td><span class="subject subject-green">Revision</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Tuesday</td>
+                            <td><span class="subject subject-blue">DSA</span></td>
+                            <td><span class="subject subject-orange">Maths</span></td>
+                            <td><span class="subject subject-green">Web Dev</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Wednesday</td>
+                            <td><span class="subject subject-purple">Python</span></td>
+                            <td><span class="subject subject-blue">DSA</span></td>
+                            <td><span class="subject subject-green">Revision</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Thursday</td>
+                            <td><span class="subject subject-blue">DSA</span></td>
+                            <td><span class="subject subject-purple">Python</span></td>
+                            <td><span class="subject subject-orange">Maths</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Friday</td>
+                            <td><span class="subject subject-green">Web Dev</span></td>
+                            <td><span class="subject subject-blue">DSA</span></td>
+                            <td><span class="subject subject-purple">Revision</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Saturday</td>
+                            <td><span class="subject subject-blue">DSA Practice</span></td>
+                            <td><span class="subject subject-orange">Assignments</span></td>
+                            <td><span class="subject subject-green">Weekly Review</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="section-note">
+                ✨ Customize this sample schedule according to your classes.
+            </p>
+
+        </section>
+
+
+        <!-- ===== CODING TRACKER ===== -->
+        <section class="section-card" id="coding">
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-kicker">BUILD YOUR SKILLS</span>
+                    <h2>Coding Tracker 💻</h2>
+                    <p>Track your learning journey in one place.</p>
+                </div>
+
+                <span class="section-emoji">🚀</span>
+            </div>
+
+            <div class="coding-cards">
+
+                <article class="coding-card coding-dsa">
+                    <div class="coding-card-icon">⌨️</div>
+                    <span class="coding-category">PROBLEM SOLVING</span>
+                    <h3>C++ & DSA</h3>
+                    <p>Build logic and improve your problem-solving skills.</p>
+
+                    <div class="solved-display">
+                        <strong id="codingSolvedDisplay">0</strong>
+                        <span>questions solved</span>
+                    </div>
+
+                    <div class="coding-input-row">
+                        <input
+                            type="number"
+                            id="solvedInput"
+                            min="0"
+                            max="100000"
+                            placeholder="Solved count"
+                            aria-label="Number of DSA questions solved">
+
+                        <button id="updateSolved" type="button"
+                            class="btn btn-primary">
+                            Save
+                        </button>
+                    </div>
+                </article>
+
+
+                <article class="coding-card coding-leetcode">
+                    <div class="coding-card-icon">🧩</div>
+                    <span class="coding-category">DAILY CHALLENGE</span>
+                    <h3>LeetCode</h3>
+                    <p>Practice coding problems and strengthen your fundamentals.</p>
+
+                    <div class="coding-highlight">
+                        <strong>Keep solving.</strong>
+                        <span>One problem at a time.</span>
+                    </div>
+
+                    <a href="https://leetcode.com/"
+                        target="_blank" rel="noopener noreferrer"
+                        class="text-link">
+                        Open LeetCode ↗
+                    </a>
+                </article>
+
+
+                <article class="coding-card coding-web">
+                    <div class="coding-card-icon">🌐</div>
+                    <span class="coding-category">CREATE & BUILD</span>
+                    <h3>Web Development</h3>
+                    <p>Turn your ideas into useful and interactive websites.</p>
+
+                    <div class="tech-stack">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+
+                    <a href="https://developer.mozilla.org/"
+                        target="_blank" rel="noopener noreferrer"
+                        class="text-link">
+                        Explore Resources ↗
+                    </a>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ===== FOCUS TIMER ===== -->
+        <section class="section-card focus-section" id="focus">
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-kicker">DEEP WORK MODE</span>
+                    <h2>Focus Room 🎧</h2>
+                    <p>One task. One session. No distractions.</p>
+                </div>
+
+                <span class="section-emoji">⏳</span>
+            </div>
+
+            <div class="focus-content">
+
+                <div class="focus-timer">
+                    <div class="timer-ring">
+                        <span id="timerDisplay">25:00</span>
+                        <small id="timerStatus">READY TO FOCUS</small>
+                    </div>
+                </div>
+
+                <div class="focus-controls">
+                    <label for="focusMode">Choose your session</label>
+
+                    <select id="focusMode">
+                        <option value="25">Focus · 25 minutes</option>
+                        <option value="15">Quick Focus · 15 minutes</option>
+                        <option value="5">Short Break · 5 minutes</option>
+                    </select>
+
+                    <div class="timer-buttons">
+                        <button id="startTimer" type="button"
+                            class="btn btn-primary">
+                            ▶ Start
+                        </button>
+
+                        <button id="resetTimer" type="button"
+                            class="btn btn-secondary">
+                            ↻ Reset
+                        </button>
+                    </div>
+
+                    <p class="section-note">
+                        Keep your phone away and focus on one task.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ===== MOTIVATION BANNER ===== -->
+        <section class="motivation-banner">
+            <div>
+                <span class="section-kicker">A REMINDER FOR YOU</span>
+                <h2>Progress over perfection.</h2>
+                <p>
+                    You don't have to do everything today.
+                    Just do something that moves you forward.
+                </p>
+            </div>
+
+            <div class="motivation-icon">✦</div>
+        </section>
+
+    </main>
+
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <a href="#home" class="logo footer-logo">
+            <span class="logo-icon">S</span>
+            <span>Study<span class="logo-highlight">Sync</span></span>
+        </a>
+
+        <p>Designed for students who want to grow every day.</p>
+        <span class="footer-credit">Learn · Focus · Build · Grow</span>
+    </footer>
+
+</body>
+</html>
